@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume</title>
+    <link rel="icon" href="https://icons.veryicon.com/png/o/business/resume-icon/work-experience.png" type="image/x-icon"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #f4f4f4, #ececec);
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        header img {
+            width: 150px;
+            border-radius: 10%;
+            border: 3px solid #007bff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+
+        header img:hover {
+            transform: scale(1.1);
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #333;
+            margin-left: 50px;
+            text-align: left;
+        }
+
+        header p {
+            font-size: 20px;
+            color: #666;
+            margin-left: 50px;
+            text-align: left;
+        }
+
+        header .text-container {
+            max-width: 70%;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            color: #007bff;
+            margin-left: 50px;
+            padding-bottom: 5px;
+            text-align: start;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .section h2:hover {
+            color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .content {
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.5s, transform 0.5s;
+            text-align: start;
+            font-size: 14px;
+        }
+
+        .content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* List Formatting */
+        .content ul {
+            margin-left: 100px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .content ul li {
+            padding: 5px 0;
+        }
+
+        /* Skills Section */
+      /* Skills Section */
+.skills ul {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center items */
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    list-style-type: none; /* Remove bullet points */
+}
+
+.skills li {
+    background-color: rgb(49, 36, 36), 68, 68), 68, 68), 66, 66), 66, 66); /* Light background for contrast */
+    color: rgb(196, 18, 18);
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px; /* Add padding for better spacing */
+    margin: 10px; /* Add margin for spacing between items */
+    text-align: center; /* Center text */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, transform 0.2s;
+    flex-basis: calc(45% - 20px); /* Adjust basis to create two columns */
+}
+
+.skills li:hover {
+    background: #0056b3; /* Darker background on hover */
+    color: #fff; /* Change text color on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+
+        /* Footer */
+        .footer {
+            font-size: 16px;
+            margin-top: 40px;
+            color: #555;
+        }
+
+        .footer h5 {
+            font-size: 16px;
+            color: #007bff;
+            margin: 0;
+        }
+
+        /* Print Button */
+        .print-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+        }
+
+        .print-button:hover {
+            background-color: #218838;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @media print {
+            body {
+                font-size: 12px;
+            }
+
+            .container {
+                margin: 0;
+                padding: 10px;
+            }
+
+            .section {
+                margin-bottom: 2px;
+            }
+
+            .content ul {
+                margin-left: 50px;
+            }
+        }
+        /* Dark Mode Styles */
+body.dark-mode {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+.container.dark-mode {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.section h2.dark-mode {
+    color: #bb86fc;
+}
+
+.skills li.dark-mode {
+    background-color: #3700b3;
+    color: #fff;
+}
+
+.footer.dark-mode {
+    color: #bbb;
+}
+
+.print-button.dark-mode {
+    background-color: #03dac5;
+}
+
+.print-button.dark-mode:hover {
+    background-color: #018786;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="modeToggle" onclick="toggleMode()">Switch to Dark Mode</button>
+
+        <header>
+            <div class="text-container">
+                <h1>PRIYADHARSHINI</h1>
+                <p>Computer Science Student | Aspiring Software Developer</p>
+                <p>priyasivam2003@gmail.com, 06381079542</p>
+            </div>
+            <img id="profilePhoto" src="https://via.placeholder.com/150" alt="Profile Photo">
+        </header>
+
+        <div class="upload-section">
+            <label for="photoUpload">Upload your Photo:</label>
+            <input type="file" id="photoUpload" onchange="previewPhoto()">
+        </div>
+
+        <div class="section">
+            <h2 onclick="toggleContent('objectiveContent')">Objective<hr></h2>
+            <div id="objectiveContent" class="content"  style="margin-left:100px ;">
+                <p>To leverage my knowledge in Computer Science and software development skills to contribute to innovative projects, solve real-world problems, and grow as a proficient software developer in a dynamic organization.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 onclick="toggleContent('educationContent')">Education <hr></h2>
+            <div id="educationContent" class="content">
+                <ul>
+                    <li>Bachelor of Computer Science (BSc.(CS))</li>
+                    <li>Dhanalakshmi Srinivasan College of Arts and Science for Women – Graduation: 2023</li>
+                    <li>CGPA: 8.9/10</li>
+                </ul>
+                <ul>
+                    <li>Master of Computer Science (MSc.(CS))</li>
+                    <li>Annamalai University – Graduation: 2025</li>
+             `       <li>CGPA: 9/10</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 onclick="toggleContent('skillsContent')">Software Skills <hr></h2>
+            <div id="skillsContent" class="content skills">
+                <ul>
+                    <li>JavaScript</li>
+                    <li>Java</li>
+                    <li>HTML5 & CSS3</li>
+                    <li>React</li>
+                    <li>SQL</li>
+                    <li>Git & GitHub</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 onclick="toggleContent('marksContent')">Academic Marks<hr></h2>
+            <div id="marksContent" class="content">
+                <ul>
+                    <li>1st sem: 85%</li>
+                    <li>2nd sem: 95%</li>
+                    <li>4th sem (Current): Ongoing</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 onclick="toggleContent('projectContent')">Final Year Project<hr></h2>
+            <div id="projectContent" class="content" style="margin-left:100px ;"  >
+                <p><strong>Project Title:</strong> Flight Fare Prediction</p>
+                <p><strong>Description:</strong> Developed a machine learning model to predict flight ticket prices based on factors like airline, departure time, duration, and demand using Python and Scikit-learn.</p>
+                <p><strong>Project Title:</strong> Cyber Crime Awareness System</p>
+                <p><strong>Description:</strong> Developed a web-based Cyber Crime Awareness System using HTML, CSS, PHP, and MySQL.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 onclick="toggleContent('certificationsContent')">Certifications</h2>
+            <div id="certificationsContent" class="content">
+                <ul>
+                    <li>Web Development Internship at CodeBind Technologies</li>
+                    <li>Full Stack Development MasterClass at NoviTech R&D Pvt. Ltd.</li>
+                    <li>React.js MasterClass at NoviTech R&D Pvt. Ltd.</li>
+                    <li>Java Training at Besant Technologies</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="print-button" onclick="printResume()">Print Resume</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        function toggleContent(contentId) {
+            const contentElement = document.getElementById(contentId);
+            if (contentElement.classList.contains('active')) {
+                contentElement.classList.remove('active');
+            } else {
+                contentElement.classList.add('active');
+            }
+        }
+    
+        function previewPhoto() {
+            const file = document.getElementById('photoUpload').files[0];
+            const reader = new FileReader();
+    
+            reader.onloadend = function () {
+                if (file) {
+                    const profileImage = document.getElementById('profilePhoto');
+                    profileImage.src = reader.result;
+                    document.querySelector('.upload-section').style.display = 'none';
+                } else {
+                    alert("No file selected!");
+                }
+            };
+    
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    
+        function printResume() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    doc.setFontSize(18);
+    doc.text("PRIYADHARSHINI", 20, 20);
+    doc.setFontSize(12);
+    doc.text("Computer Science Student | Aspiring Software Developer", 20, 30);
+
+    const img = document.getElementById('profilePhoto').src;
+    if (img.includes('data:image')) {
+        doc.addImage(img, 'JPEG', 160, 10, 40, 40);
+    }
+
+    // Add Objective
+    doc.setFontSize(16);
+    doc.text("Objective", 20, 50);
+    doc.setFontSize(12);
+    const objectiveText = "To leverage my knowledge in Computer Science and software development skills to contribute to innovative projects, solve real-world problems, and grow as a proficient software developer in a dynamic organization.";
+    doc.text(doc.splitTextToSize(objectiveText, 180), 20, 60);
+
+    // Add Education
+    doc.setFontSize(16);
+    doc.text("Education", 20, 80);
+    doc.setFontSize(12);
+    const educationText1 = "Bachelor of Computer Science (BSc.(CS)) - Dhanalakshmi Srinivasan College of Arts and Science for Women - Graduation: 2023 - CGPA: 8.9/10";
+    const educationText2 = "Master of Computer Science (MSc.(CS)) - Annamalai University - Graduation: 2025 - CGPA: 9/10";
+    doc.text(doc.splitTextToSize(educationText1, 180), 20, 90);
+    doc.text(doc.splitTextToSize(educationText2, 180), 20, 100);
+
+    // Add Software Skills
+    doc.setFontSize(16);
+    doc.text("Software Skills", 20, 120);
+    doc.setFontSize(12);
+    const skillsText = "JavaScript, Java, HTML5 & CSS3, React, Node.js, SQL, Git & GitHub";
+    doc.text(doc.splitTextToSize(skillsText, 180), 20, 130);
+
+    // Add Academic Marks
+    doc.setFontSize(16);
+    doc.text("Academic Marks", 20, 150);
+    doc.setFontSize(12);
+    const marksText = "1st sem: 85%, 2nd sem: 95%, 4th sem (Current): Ongoing";
+    doc.text(doc.splitTextToSize(marksText, 180), 20, 160);
+
+    // Add Final Year Projects
+    doc.setFontSize(16);
+    doc.text("Final Year Projects", 20, 180);
+    doc.setFontSize(12);
+    const projectsText1 = "1. Flight Fare Prediction: Developed a model to predict flight prices.";
+    const projectsText2 = "2. Cyber Crime Awareness System: Created a web-based system for educating users.";
+    doc.text(doc.splitTextToSize(projectsText1, 180), 20, 190);
+    doc.text(doc.splitTextToSize(projectsText2, 180), 20, 200);
+
+    // Add Certifications
+    doc.setFontSize(16);
+    doc.text("Certifications", 20, 220);
+    doc.setFontSize(12);
+    const certificationsText1 = "1. Web Development Internship at CodeBind Technologies";
+    const certificationsText2 = "2. Full Stack Development MasterClass at NoviTech R&D Pvt. Ltd.";
+    const certificationsText3 = "3. React.js MasterClass at NoviTech R&D Pvt. Ltd.";
+    const certificationsText4 = "4. Java Training at Besant Technologies";
+    doc.text(doc.splitTextToSize(certificationsText1, 180), 20, 230);
+    doc.text(doc.splitTextToSize(certificationsText2, 180), 20, 240);
+    doc.text(doc.splitTextToSize(certificationsText3, 180), 20, 250);
+    doc.text(doc.splitTextToSize(certificationsText4, 180), 20, 260);
+
+    doc.save("resume.pdf");
+}
+function toggleMode() {
+    const body = document.body;
+    const container = document.querySelector('.container');
+    const sections = document.querySelectorAll('.section h2');
+    const skillsItems = document.querySelectorAll('.skills li');
+    const footer = document.querySelector('.footer');
+    const printButton = document.querySelector('.print-button');
+
+    body.classList.toggle('dark-mode');
+    container.classList.toggle('dark-mode');
+    footer.classList.toggle('dark-mode');
+    printButton.classList.toggle('dark-mode');
+
+    sections.forEach(section => {
+        section.classList.toggle('dark-mode');
+    });
+
+    skillsItems.forEach(item => {
+        item.classList.toggle('dark-mode');
+    });
+
+    const isDarkMode = body.classList.contains('dark-mode');
+    document.getElementById('modeToggle').innerText = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+}
+
+
+    </script>
+    
+</body>
+</html>  
